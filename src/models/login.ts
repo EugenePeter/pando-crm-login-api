@@ -33,7 +33,11 @@ export class User<T extends Event> {
         throw this.errors;
       }
 
-      if (user && user?.email && bcrypt.compareSync(this.data.password, user.password)) {
+      if (
+        user &&
+        user?.email &&
+        bcrypt.compareSync(this.data.password, user.password)
+      ) {
         this.data = user;
         console.log("THIS DATA:", this.data);
         return this.data;

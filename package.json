@@ -1,24 +1,27 @@
 {
-  "name": "many_pixels-test",
+  "name": "pando-login-api",
   "version": "1.0.0",
-  "description": "unsplash api wrapped in graphql api",
+  "description": "login api",
   "author": "Eugene Peter Maestrado",
   "license": "ISC",
-  "engines": {
-    "node": "14.x",
-    "yarn": "1.22.10"
-  },
   "scripts": {
     "watch": "tsc -w",
     "develop": "rm -rf dist && tsc && nodemon dist/app.js",
     "start": "dist/app.js",
-    "rebuild": "rm -rf dist && tsc"
+    "rebuild": "rm -rf dist && tsc",
+    "yo": "nodemon server.ts",
+    "proto:gen": "rm -rf ./proto/applicationConfigPackage && ./proto-gen.sh",
+    "server": "ts-node server2",
+    "client": "ts-node client2"
   },
   "dependencies": {
+    "@grpc/grpc-js": "^1.4.5",
+    "@grpc/proto-loader": "^0.6.7",
     "@types/cookie-parser": "^1.4.2",
     "@types/cookie-session": "^2.0.43",
     "@types/node-fetch": "^2.5.10",
     "apollo-server-express": "^2.23.0",
+    "axios": "^0.25.0",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "cookie-session": "^1.4.0",
@@ -29,6 +32,7 @@
     "graphql-playground": "^1.3.17",
     "graphql-playground-middleware-express": "^1.7.22",
     "graphql-request": "^3.5.0",
+    "grpc": "^1.24.11",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.0.8",
     "node-fetch": "^2.6.1",

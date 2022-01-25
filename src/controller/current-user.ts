@@ -4,6 +4,8 @@ import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 import { addCatchUndefinedToSchema } from "graphql-tools";
 
+import { getToken } from "./token";
+
 dotenv.config();
 const { JWTSECRET } = process.env;
 interface ICookies extends Request {
@@ -34,7 +36,11 @@ declare global {
   }
 }
 
-export const isAuthorize = async (req: ICookies, res: Response, next: NextFunction) => {
+export const isAuthorize = async (
+  req: ICookies,
+  res: Response,
+  next: NextFunction
+) => {
   const { cookies } = req;
   console.log("COOKIES:", cookies);
   if (!cookies.name) next();
@@ -43,7 +49,14 @@ export const isAuthorize = async (req: ICookies, res: Response, next: NextFuncti
       cookies.token,
       JWTSECRET!
     ) as user_payload;
-    res.status(200).json({ isAuthorize: true, company_id, company_name, email });
+    // const access_token = await getToken();
+    // console.log("ACCESS TOKEN:", access_token);
+    res.status(200).json({
+      isAuthorize: true,
+      company_id,
+      company_name,
+      email,
+    });
   } catch (e) {
     res.status(200).json({ isAuthorize: false });
   }
