@@ -48,7 +48,7 @@ var isAuthorize = function (req, res, next) { return __awaiter(void 0, void 0, v
     var cookies, _a, company_id, company_name, email;
     return __generator(this, function (_b) {
         cookies = req.cookies;
-        console.log("COOKIES:", cookies);
+        console.log('COOKIES:', cookies);
         if (!cookies.name)
             next();
         try {
@@ -63,7 +63,8 @@ var isAuthorize = function (req, res, next) { return __awaiter(void 0, void 0, v
             });
         }
         catch (e) {
-            res.status(200).json({ isAuthorize: false });
+            // res.status(200).json({ isAuthorize: false });
+            res.json({ isAuthorize: false });
         }
         next();
         return [2 /*return*/];

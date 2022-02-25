@@ -1,10 +1,9 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
-import jwt from "jsonwebtoken";
-import dotenv from "dotenv";
-import { addCatchUndefinedToSchema } from "graphql-tools";
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 
-import { getToken } from "./token";
+import { getToken } from './token';
 
 dotenv.config();
 const { JWTSECRET } = process.env;
@@ -42,7 +41,7 @@ export const isAuthorize = async (
   next: NextFunction
 ) => {
   const { cookies } = req;
-  console.log("COOKIES:", cookies);
+  console.log('COOKIES:', cookies);
   if (!cookies.name) next();
   try {
     const { company_id, company_name, email } = jwt.verify(
@@ -58,7 +57,8 @@ export const isAuthorize = async (
       email,
     });
   } catch (e) {
-    res.status(200).json({ isAuthorize: false });
+    // res.status(200).json({ isAuthorize: false });
+    res.json({ isAuthorize: false });
   }
   next();
 };
